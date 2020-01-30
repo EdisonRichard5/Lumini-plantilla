@@ -36,6 +36,9 @@
 										th:href="@{/login}"><i class="fas fa-sign-in-alt"></i>Iniciar
 											sesi&oacute;n</a></li>
 
+									<li sec:authorize="!isAuthenticated()"><a
+										th:href="@{/usuario/create}"><i class="fas fa-sign-in-alt"></i>Registrarse</a></li>
+
 									<li sec:authorize="isAuthenticated()"><a href="#"><i
 											class="fas fa-user"></i><span sec:authentication="name"></span></a></li>
 									<li sec:authorize="isAuthenticated()">
@@ -63,23 +66,33 @@
 						</div>
 						<div class="col-xl-6 col-lg-7">
 							<div class="main-menu  d-none d-lg-block">
-								<nav>
+<nav>
 									<ul id="navigation">
 										<li><a class="active" th:href="@{/}">Inicio</a></li>
-							
-										<li><a th:href="@{/}">Catalogo<i class="ti-angle-down"></i></a>
+										<li sec:authorize="hasRole('ROLE_USER')"><a
+											th:href="@{/}">Admisi&oacute;n<i class="ti-angle-down"></i></a>
 											<ul class="submenu">
-												<li><a th:href="@{/servicio/list}">Servicios</a></li>
-												<li><a th:href="@{/producto/list}">Productos</a></li>
-					
-											</ul>
-										</li>
-										<li><a th:href="@{/cliente/list}">Clientes</a></li>
-										<li><a th:href="@{/empleado/list}">Empleados</a></li>
-										
+												<li><a th:href="@{/pedido/create}">Registro de
+														pedido</a></li>
+												<li><a th:href="@{/cliente/create}">Gesti&oacute;n
+														de clientess</a></li>
+											</ul></li>
+									 
+										<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="#">Administraci&oacute;n<i
+												class="ti-angle-down"></i></a>
+											<ul class="submenu">
+												<li><a class="nav-link"
+													th:href="@{/producto/list}">Tipo de productos</a></li>
+												<li><a class="nav-link" th:href="@{/empleado/list}">Empleado</a></li>
+												<li><a class="nav-link" th:href="@{/servicio/list}">Servicios</a></li>
+												<li><a class="nav-link" th:href="@{/cliente/list}">Clientes</a></li>
+											</ul></li>
 										<li><a href="contact.html">Contacto</a></li>
 									</ul>
-								</nav>
+								</nav>								 
+								 
+								 
+								 
 							</div>
 						</div>
 						<div class="col-xl-3 col-lg-3 d-none d-lg-block">
@@ -230,7 +243,8 @@
 		<script th:src="@{/js/jquery.form.js}"></script>
 		<script th:src="@{/js/jquery.validate.min.js}"></script>
 		<script th:src="@{/js/mail-script.js}"></script>
-
+		
+		<script th:src="@{/js/Chart.min.js}"></script>
 		<script th:src="@{/js/main.js}"></script>
 		<script th:src="@{/js/layout.js}"></script>
 

@@ -1,5 +1,5 @@
 package com.clean.app.web.controllers;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.clean.app.web.models.entities.Servicio;
 import com.clean.app.web.models.services.IServicioService;
+import com.clean.app.web.reporting.LlaveValor;
 
 @Controller
 @RequestMapping(value="/servicio")
@@ -77,5 +78,22 @@ public class ServicioController {
 		model.addAttribute("lista", lista);
 		return "servicio/list";		
 	} 
+	
+
+	@GetMapping(value = "/report")
+	public String report(Model model) {		
+		model.addAttribute("title", "Reporte");
+		return "servicio/report";
+	}
+
+
+
+	@GetMapping(value = "/loadData/{id}", produces="application/json")
+	public @ResponseBody List<LlaveValor> loadData(@PathVariable(value = "id") Integer id) {	
+		List<LlaveValor> lista = service.countServicio(id);
+		return lista;
+	}
+
+	
 
 }

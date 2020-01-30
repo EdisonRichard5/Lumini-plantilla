@@ -12,8 +12,10 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.clean.app.web.models.services.UsuarioService;
 import com.clean.app.web.security.LoginSuccessHandler;
 
+ 
 @EnableGlobalMethodSecurity(securedEnabled=true)
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -21,31 +23,28 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private LoginSuccessHandler successHandler;
 	
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder(); 		
-	}
-	
+	@Autowired
+	private UsuarioService usuarioService;
+		
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+		
 	@Autowired
 	public void configurerGlobal(AuthenticationManagerBuilder builder) throws Exception {		
-		PasswordEncoder encoder = passwordEncoder();
-		UserBuilder users = 
-				User.builder().passwordEncoder(password -> encoder.encode(password));
-		builder.inMemoryAuthentication()
-			.withUser(users.username("admin1").password("12345").roles("ADMIN"))			
-			.withUser(users.username("raizo2000").password("12345").roles("USER"));		
+		builder.userDetailsService(usuarioService).passwordEncoder(passwordEncoder);		
 	}
 	
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/","/css/**","/js/**","/img/**","/scss/**","/fonts/**").permitAll()
-			.antMatchers("/producto/**").hasAnyRole("ADMIN")
-			.antMatchers("/servicio/**").hasAnyRole("ADMIN")
+		.antMatchers("/","/css/**","/js/**","/img/**","/scss/**","/fonts/**","/h2-console/**").permitAll()			
+		.antMatchers("/usuario/**").permitAll()
+		
+		.antMatchers("/producto/**").hasAnyRole("ADMIN")
+			.antMatchers("/servicio/**").permitAll()
 			.antMatchers("/empleado/**").hasAnyRole("ADMIN")
-			.antMatchers("/herramienta/**").hasAnyRole("ADMIN")
-			.antMatchers("/cliente/**").hasAnyRole("USER")			
+			.antMatchers("/cliente/**").permitAll()		
 			.anyRequest().authenticated()
 			.and()
 				.formLogin().successHandler(successHandler)

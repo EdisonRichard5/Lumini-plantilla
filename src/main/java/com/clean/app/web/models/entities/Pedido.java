@@ -40,9 +40,7 @@ public class Pedido implements Serializable {
 	@ManyToOne
 	private Empleado empleado;
 	
-	@JoinColumn(name="IDCLIENTE",referencedColumnName="IDCLIENTE")
-	@ManyToOne
-	private Cliente cliente;
+	
 	
 	@JoinColumn(name="IDMASTER",referencedColumnName="IDMASTER")
 	@ManyToOne
@@ -108,14 +106,6 @@ public class Pedido implements Serializable {
 
 	public void setEmpleado(Empleado empleado) {
 		this.empleado = empleado;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}
 
 	public Master getMaster() {

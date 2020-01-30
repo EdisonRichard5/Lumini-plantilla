@@ -36,7 +36,6 @@ public class Cliente implements Serializable{
 	
 	@Column(name="TELEFONO")
 	@Size(max=10)
-	@Pattern(regexp="[0-9]",message="Ingrese un numero valido")
 	private String telefono;
 	
 	@Column(name="OBSERVACION")
@@ -44,7 +43,7 @@ public class Cliente implements Serializable{
 	private String observacion;
 		
 	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY)
-	private List<Pedido> pedido;
+	private List<Master> master;
 	
 	public Cliente() {
 		super();
@@ -95,12 +94,11 @@ public class Cliente implements Serializable{
 		this.observacion = observacion;
 	}
 
-	public List<Pedido> getPedido() {
-		return pedido;
+	public List<Master> getMaster() {
+		return master;
 	}
 
-	public void setPedido(List<Pedido> pedido) {
-		this.pedido = pedido;
+	public void setMaster(List<Master> master) {
+		this.master = master;
 	}
-	
 }
