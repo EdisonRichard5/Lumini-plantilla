@@ -28,10 +28,7 @@ public class Pedido implements Serializable {
 	@ManyToOne
 	private Producto producto;
 	
-	@JoinColumn(name="IDHERRAMIENTA",referencedColumnName="IDHERRAMIENTA")
-	@ManyToOne
-	private Herramienta herramienta;
-	
+	 
 	@JoinColumn(name="IDSERVICIO",referencedColumnName="IDSERVICIO")
 	@ManyToOne
 	private Servicio servicio;
@@ -51,11 +48,11 @@ public class Pedido implements Serializable {
 	private String solicitud;
 	
 	@Column(name="ESTADO")
-	@Size(max=1)
+	 
 	private Integer estado ;
 	
 	@Column(name="COSTEFINAL")
-	@Size(max=50)
+ 
 	private float costefinal;
 
 	
@@ -84,13 +81,7 @@ public class Pedido implements Serializable {
 		this.producto = producto;
 	}
 
-	public Herramienta getHerramienta() {
-		return herramienta;
-	}
-
-	public void setHerramienta(Herramienta herramienta) {
-		this.herramienta = herramienta;
-	}
+	 
 
 	public Servicio getServicio() {
 		return servicio;
