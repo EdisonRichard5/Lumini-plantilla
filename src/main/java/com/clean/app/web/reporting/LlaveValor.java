@@ -8,7 +8,7 @@ public class LlaveValor implements Serializable{
 
 	private String llave;
 
-	private BigInteger valor;
+	private Double valor;
 	
 	private Integer valor2;
 
@@ -29,7 +29,7 @@ public class LlaveValor implements Serializable{
 
 
 
-	public LlaveValor(String llave, BigInteger valor,Integer valor2) {
+	public LlaveValor(String llave, Double valor,Integer valor2) {
 		super();
 		this.llave = llave;
 		this.valor = valor;
@@ -46,11 +46,11 @@ public class LlaveValor implements Serializable{
 		this.llave = llave;
 	}
 
-	public BigInteger getValor() {
+	public Double getValor() {
 		return valor;
 	}
 
-	public void setValor(BigInteger valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
 
