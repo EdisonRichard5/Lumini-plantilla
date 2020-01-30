@@ -64,7 +64,7 @@ public class ServicioService implements IServicioService{
 		List<Object[]> datos = consulta.getResultList();
 		System.out.println(datos);
 		return datos.stream()
-				.map(r -> new LlaveValor((String)r[1], (BigInteger)r[0]))
+				.map(r -> new LlaveValor((String)r[1], (BigInteger)r[0],(Integer)r[2]))
 				.collect(Collectors.toList());		
 	}
 
