@@ -7,8 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.clean.app.web.models.dao.IMaster;
-import com.clean.app.web.models.entities.Master;
-import com.taxi.app.web.models.entities.FormaPago;
+import com.clean.app.web.models.entities.Master; 
 
 
 @Service

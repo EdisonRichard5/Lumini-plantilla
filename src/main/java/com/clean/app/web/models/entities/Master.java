@@ -119,11 +119,11 @@ public class Master implements Serializable {
 	}
 
 	public List<Pedido> getPedido() {
-		return pedido;
+		return detalles;
 	}
 
-	public void setPedido(List<Pedido> pedido) {
-		this.pedido = pedido;
+	public void setPedido(List<Pedido> detalles) {
+		this.detalles = detalles;
 	}
 
 	public Cliente getCliente() {

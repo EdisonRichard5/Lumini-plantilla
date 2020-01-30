@@ -23,11 +23,8 @@ public class Pedido implements Serializable {
 	@Basic(optional = false)
 	@Column(name="IDPEDIDO")
 	private Integer idpedido;
-
-	@JoinColumn(name = "IDPEDIDO", referencedColumnName = "IDPEDIDO")
-	@ManyToOne
-	private  Servicio pedido;
 	
+	 
 	
 	@Column(name="COSTEFINAL")
  
@@ -60,11 +57,12 @@ public class Pedido implements Serializable {
 	public Pedido() {
 		super();
 	}
-	
+
 	public Pedido(Integer id) {
 		super();
-		this.idpedido=id;
+		this.idpedido = id;
 	}
+	 
 
 	public Integer getIdpedido() {
 		return idpedido;
@@ -74,6 +72,7 @@ public class Pedido implements Serializable {
 		this.idpedido = idpedido;
 	}
 
+ 
 	public Producto getProducto() {
 		return producto;
 	}
@@ -100,15 +99,7 @@ public class Pedido implements Serializable {
 		this.empleado = empleado;
 	}
 
-	public Master getMaster() {
-		return master;
-	}
-
-	public void setMaster(Master master) {
-		this.master = master;
-	}
  
-
 	 
 
 	public float getCostefinal() {

@@ -17,11 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.clean.app.web.models.entities.Servicio;
 import com.clean.app.web.models.services.IServicioService;
 import com.clean.app.web.reporting.LlaveValor;
-<<<<<<< HEAD
-import com.taxi.app.web.models.entities.MetodoPago;
-=======
+ 
 import com.clean.app.web.reporting.LlaveValor2;
->>>>>>> 137710165c440bc38d825bfb45113742eb288303
+ 
 
 @Controller
 @RequestMapping(value="/servicio")
