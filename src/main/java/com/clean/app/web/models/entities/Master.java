@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,10 +19,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
+ 
 @Entity()
 @Table(name = "MASTER")
 public class Master implements Serializable {
@@ -48,8 +50,23 @@ public class Master implements Serializable {
 	@ManyToOne
 	private Cliente cliente;
 	
-	@OneToMany(mappedBy="master", fetch=FetchType.LAZY)
-	private List<Pedido> pedido;
+	@Transient
+	private int personaid;
+		
+	public int getPersonaid() {
+		return personaid;
+	}
+
+	public void setPersonaid(int personaid) {
+		this.personaid = personaid;
+	}
+	
+ 
+		
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name= "IDMASTER")
+	private List<Pedido> detalles;
 	
 	public Master() {
 		super();
@@ -58,6 +75,15 @@ public class Master implements Serializable {
 	public Master(Integer id) {
 		super();
 		this.idmaster=id;
+	}
+ 
+
+	public List<Pedido> getDetalles() {
+		return detalles;
+	}
+
+	public void setDetalles(List<Pedido> detalles) {
+		this.detalles = detalles;
 	}
 
 	public Integer getIdmaster() {
@@ -107,6 +133,6 @@ public class Master implements Serializable {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
+	 
 	
 }

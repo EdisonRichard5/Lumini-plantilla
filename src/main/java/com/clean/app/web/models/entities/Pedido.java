@@ -23,6 +23,17 @@ public class Pedido implements Serializable {
 	@Basic(optional = false)
 	@Column(name="IDPEDIDO")
 	private Integer idpedido;
+
+	@JoinColumn(name = "IDPEDIDO", referencedColumnName = "IDPEDIDO")
+	@ManyToOne
+	private  Servicio pedido;
+	
+	
+	@Column(name="COSTEFINAL")
+ 
+	private float costefinal;
+	 
+	
 	
 	@JoinColumn(name="IDPRODUCTO",referencedColumnName="IDPRODUCTO")
 	@ManyToOne
@@ -43,17 +54,7 @@ public class Pedido implements Serializable {
 	@ManyToOne
 	private Master master;
 	
-	@Column(name="SOLICITUD")
-	@Size(max=500)
-	private String solicitud;
-	
-	@Column(name="ESTADO")
-	 
-	private Integer estado ;
-	
-	@Column(name="COSTEFINAL")
- 
-	private float costefinal;
+
 
 	
 	public Pedido() {
@@ -106,22 +107,9 @@ public class Pedido implements Serializable {
 	public void setMaster(Master master) {
 		this.master = master;
 	}
+ 
 
-	public String getSolicitud() {
-		return solicitud;
-	}
-
-	public void setSolicitud(String solicitud) {
-		this.solicitud = solicitud;
-	}
-
-	public Integer getEstado() {
-		return estado;
-	}
-
-	public void setEstado(Integer estado) {
-		this.estado = estado;
-	}
+	 
 
 	public float getCostefinal() {
 		return costefinal;

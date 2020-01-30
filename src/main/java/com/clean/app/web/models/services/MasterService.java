@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.clean.app.web.models.dao.IMaster;
 import com.clean.app.web.models.entities.Master;
+import com.taxi.app.web.models.entities.FormaPago;
 
 
 @Service
@@ -42,4 +43,10 @@ public class MasterService implements IMasterService {
 		return (List<Master>) dao.findAll();
 	}
 
+
+	@Override
+	public List<Master> findByCliente(Integer id) {
+		// TODO Auto-generated method stub
+		return dao.findByCliente(id);
+	}
 }

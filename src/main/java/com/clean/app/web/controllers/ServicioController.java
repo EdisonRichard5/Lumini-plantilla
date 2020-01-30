@@ -2,9 +2,12 @@ package com.clean.app.web.controllers;
 import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.clean.app.web.models.entities.Servicio;
 import com.clean.app.web.models.services.IServicioService;
 import com.clean.app.web.reporting.LlaveValor;
+import com.taxi.app.web.models.entities.MetodoPago;
 
 @Controller
 @RequestMapping(value="/servicio")
@@ -58,18 +62,28 @@ public class ServicioController {
 		return "redirect:/servicio/list";		
 	} 
 	
+	
+	
 	@PostMapping(value="/save")
-	public String save(Servicio servicio, Model model,
+	public String save(@Valid Servicio servicio , BindingResult result, Model model,
 			RedirectAttributes flash) {
 		try {
-			service.save(servicio);
-			flash.addFlashAttribute("success", "El registro fue guardado con éxito.");
-		}
-		catch(Exception ex) {
-			flash.addFlashAttribute("error", "El registro no pudo ser guardado.");
-		}
+            if(result.hasErrors()){
+                model.addAttribute("tittle", "Error al Guardar");
+                
+        		model.addAttribute("servicio", servicio);
+                return "servicio/form";
+            }
+            service.save(servicio);
+            flash.addFlashAttribute("success", "El registro fue guardado con éxito.");
+        }
+        catch(Exception ex) {
+            flash.addFlashAttribute("error", "El registro no pudo ser guardado.");
+        }
 		return "redirect:/servicio/list";		
 	} 
+	
+	  
 	
 	@GetMapping(value="/list")
 	public String list(Model model) {

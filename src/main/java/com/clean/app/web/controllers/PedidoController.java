@@ -42,7 +42,7 @@ public class PedidoController {
 	public String update(@PathVariable(value="id") Integer id, Model model) {
 		Pedido pedido = service.findById(id);
 		model.addAttribute("title", "Actualizando el registro de " 
-		+ pedido.getSolicitud() +" "+ pedido.getCostefinal());
+		+ pedido.getServicio() +" "+ pedido.getCostefinal());
 		model.addAttribute("pedido", pedido);
 		return "pedido/form";		
 	} 
@@ -67,7 +67,7 @@ public class PedidoController {
 			if(result.hasErrors())
 			{
 				 				
-				if(pedido.getSolicitud() == null) {
+				if(pedido.getServicio() == null) {
 					model.addAttribute("title","Nuevo registro");					
 				}
 				else {
