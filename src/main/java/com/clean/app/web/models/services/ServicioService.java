@@ -1,6 +1,7 @@
  package com.clean.app.web.models.services;
 
 import java.util.List;
+import java.math.BigDecimal;
 import  java.math.BigInteger ;
 import  java.util.ArrayList ;
 import  java.util.List ;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.clean.app.web.models.dao.IServicio;
 import com.clean.app.web.models.entities.Servicio;
 import com.clean.app.web.reporting.LlaveValor;
+import com.clean.app.web.reporting.LlaveValor2;
 @Service
 public class ServicioService implements IServicioService{
 	@Autowired //Inyeccion de dependencia
@@ -65,6 +67,16 @@ public class ServicioService implements IServicioService{
 		System.out.println(datos);
 		return datos.stream()
 				.map(r -> new LlaveValor((String)r[1], (Double)r[0],(Integer)r[2]))
+				.collect(Collectors.toList());		
+	}
+	
+	@Override	
+	public List<LlaveValor2> Servicio() {		
+		StoredProcedureQuery consulta = em.createStoredProcedureQuery("Servicio");
+		consulta.execute();
+		List<Object[]> datos = consulta.getResultList();
+		return datos.stream()
+				.map(r -> new LlaveValor2((String)r[1], (Double)r[0]))
 				.collect(Collectors.toList());		
 	}
 
