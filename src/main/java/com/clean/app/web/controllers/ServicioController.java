@@ -17,7 +17,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.clean.app.web.models.entities.Servicio;
 import com.clean.app.web.models.services.IServicioService;
 import com.clean.app.web.reporting.LlaveValor;
+<<<<<<< HEAD
 import com.taxi.app.web.models.entities.MetodoPago;
+=======
+import com.clean.app.web.reporting.LlaveValor2;
+>>>>>>> 137710165c440bc38d825bfb45113742eb288303
 
 @Controller
 @RequestMapping(value="/servicio")
@@ -106,6 +110,17 @@ public class ServicioController {
 	public @ResponseBody List<LlaveValor> loadData(@PathVariable(value = "id") Integer id) {	
 		List<LlaveValor> lista = service.countServicio(id);
 		return lista;
+	}
+	@GetMapping(value = "/report2")
+	public String report2(Model model) {		
+		model.addAttribute("title", "report");
+		return "servicio/report2";
+	}
+
+	@GetMapping(value = "/loadData", produces="application/json")
+	public @ResponseBody List<LlaveValor2> loadData() {	
+		List<LlaveValor2> lista =  service.Servicio();
+		return lista; 
 	}
 
 	
