@@ -1,0 +1,1 @@
+var domainURL = "http://localhost:9090/";

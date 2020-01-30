@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout :: frgHead"></head>
+<body>
+
+	<header th:replace="layout :: frgHeader"></header>
+	
+	<!-- slider_area_start -->
+    <div class="slider_area">
+        <div class="slider_active owl-carousel">            
+            <div class="single_slider  d-flex align-items-center slider_bg_1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="slider_text ">
+                                <h3> <span th:text="${framework}"></span></h3>
+                                <h3 th:text=${title}></h3>                                                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+    <!-- slider_area_end -->
+	
+	<div sec:authorize="isAuthenticated()"  th:replace="layout :: frgService"></div>
+
+	<footer th:replace="layout :: frgFooter"></footer>
+</body>
+</html>
