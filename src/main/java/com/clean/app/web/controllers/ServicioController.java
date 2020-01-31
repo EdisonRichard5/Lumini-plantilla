@@ -98,7 +98,7 @@ public class ServicioController {
 
 	@GetMapping(value = "/report")
 	public String report(Model model) {		
-		model.addAttribute("title", "Reporte");
+		model.addAttribute("title", "Reporte por mes");
 		return "servicio/report";
 	}
 
@@ -111,7 +111,7 @@ public class ServicioController {
 	}
 	@GetMapping(value = "/report2")
 	public String report2(Model model) {		
-		model.addAttribute("title", "report");
+		model.addAttribute("title", "Reporte de servicios");
 		return "servicio/report2";
 	}
 

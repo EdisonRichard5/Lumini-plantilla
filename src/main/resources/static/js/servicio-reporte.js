@@ -122,7 +122,7 @@ function load() {
 							responsive: true,
 							title: {
 								display: true,
-								text: 'Reporte por Mes'
+								text: ''
 							},
 							tooltips: {
 								mode: 'index',

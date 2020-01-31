@@ -34,7 +34,7 @@ function load(){
 						},
 						title: {
 							display: true,
-							text: 'Reporte de Servicio'
+							text: ''
 						},
 						animation: {
 							animateScale: true,

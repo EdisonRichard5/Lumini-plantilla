@@ -75,8 +75,15 @@
 												<li><a th:href="@{/pedido/create}">Registro de
 														pedido</a></li>
 												<li><a th:href="@{/cliente/create}">Gesti&oacute;n
-														de clientess</a></li>
+														de clientes</a></li>
 											</ul></li>
+										<li sec:authorize="hasRole('ROLE_ADMIN')"><a
+											th:href="@{/}">Reporte<i class="ti-angle-down"></i></a>
+											<ul class="submenu">
+												<li><a th:href="@{/servicio/report}">Reporte por mes</a></li>
+												<li><a th:href="@{/servicio/report2}">Reporte de servicios</a></li>
+											</ul>
+										</li>
 									 
 										<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="#">Administraci&oacute;n<i
 												class="ti-angle-down"></i></a>
