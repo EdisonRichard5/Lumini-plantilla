@@ -1,69 +1,14 @@
 var toData1=[0,0,0,0,0,0,0,0,0,0,0,0]
 var toData2=[0,0,0,0,0,0,0,0,0,0,0,0]
-var toData3=[0,0,0,0,0,0,0,0,0,0,0,0]
-function cero(va){
-	for (var i=0; i<12; i++) {
-		va[i]=0
-	}
-	return va;
-};
-function ordenar(va){
-	switch (va) {
-	  case 'January':
-		  return 0;				    
-		  break;
-	  case 'February':
-		  return 1;					    
-		  break;
-	  case 'March':
-		  return 2;			    
-		  break;
-	  case 'April':
-		  return 3;				    
-		  break;
-	  case 'May':
-		  return 4;				    
-		  break;
-	  case 'June':
-		  return 5;				    
-		  break;
-	  case 'July':
-		  return 6;				    
-		  break;
-	  case 'August':
-		  return 7;				    
-		  break;
-	  case 'September':
-		  return 8;				    
-		  break;
-	  case 'October':
-		  return 9;				    
-		  break;
-	  case 'November':
-		  return 10;				    
-		  break;
-	  case 'December':
-		  return 11;				    
-		  break;
-	    
-	  default:
-	    console.log('esta mal escrito el mes');
-	}
-};
-	
+var toData3=[0,0,0,0,0,0,0,0,0,0,0,0]	
 function load() {
-
-	
-
 	$.ajax({
 		url: "/servicio/loadData/1",
 		method : 'GET',
 		dataType : 'json',
 		contentType : 'application/json',
 		success : function(response){
-			toData1=cero(toData1);
 			var toLabels = [];
-			var num=0;
 			$.each(response, function(i, item){
 				toLabels.push(item.llave);
 				toData1[item.valor2-1]=item.valor;
@@ -74,9 +19,7 @@ function load() {
 				dataType : 'json',
 				contentType : 'application/json',
 				success : function(response){
-					toData2=cero(toData2);
 					var toLabels2 = [];
-					var num2=0;
 					$.each(response, function(i, item){
 						toLabels2.push(item.llave);
 						toData2[item.valor2-1]=item.valor;
@@ -87,9 +30,7 @@ function load() {
 						dataType : 'json',
 						contentType : 'application/json',
 						success : function(response){
-							toData3=cero(toData3);
 							var toLabels3 = [];
-							var num3=0;
 							$.each(response, function(i, item){
 								toLabels3.push(item.llave);
 								toData3[item.valor2-1]=item.valor;
