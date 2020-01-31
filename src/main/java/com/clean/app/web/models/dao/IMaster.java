@@ -8,6 +8,5 @@ import com.clean.app.web.models.entities.Master;
 
 public interface IMaster extends CrudRepository<Master,Integer>  {
 
-
 	public List<Master> findByCliente(Integer id);
 }

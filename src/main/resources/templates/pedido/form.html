@@ -1,65 +1,65 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout :: head"></head>
-<body>
-<div id="wrapper">
-	<header th:replace="layout :: frgHeader"></header>
-	<div id="content-wrapper" class="d-flex flex-column">
-		<!-- Begin Page Content -->
-		<div class="container">
-			<div class="container-fluid">			
-				<br />
-		<div class="card col-md-12">
-			<div class="card-body">
-				<div class="form-group row">
-					<div class="content col-sm-1">
-						<i class="far fa-plus-square fa-2x"></i>
-					</div>
-					<h3 class="card-title col-sm-10" th:text="${title}"></h3>					
-				</div>
-				<hr />
+<! DOCTYPE html >
+< html  xmlns: th = " http://www.thymeleaf.org " >
+< head  th: replace = " layout :: head " > </ head >
+< cuerpo >
+< div  id = " wrapper " >
+	< header  th: replace = " layout :: frgHeader " > </ header >
+	< div  id = " content-wrapper " class = " d-flex flex-column " >
+		<! - Comienza el contenido de la página ->
+		< div  class = " container " >
+			< div  class = " container-fluid " >			
+				< Br />
+		< div  class = " tarjeta col-md-12 " >
+			< div  class = " card-body " >
+				< div  class = " form-group row " >
+					< div  class = " content col-sm-1 " >
+						< i  class = " far fa-plus-square fa-2x " > </ i >
+					</ div >
+					< h3  class = " card-title col-sm-10 " th: text = " $ {title} " > </ h3 >					
+				</ div >
+				< hr />
 				
-				<form th:action="@{/pedido/save}" th:object="${pedido}" method="post">
+				< form  th: action = " @ {/ pedido / save} " th: object = " $ {pedido} " method = " post " >
 							
-						<div class="input-group-icon mt-10">
-										<div class="icon">
-											<i class="fas fa-info-circle" aria-hidden="true"></i>
-										</div>
-										<input type="text" th:field="*{solicitud}" placeholder="Solicitud"
-											class="single-input"
-											th:errorclass="'form-control is-invalid'" /> <small
-											class="invalid-feedback"
-											th:if="${#fields.hasErrors('solicitud')}"
-											th:errors="*{solicitud}"></small>
-									</div>
+						< div  class = " input-group-icon mt-10 " >
+										< div  class = " icon " >
+											< i  class = " fas fa-info-circle " aria-hidden = " true " > </ i >
+										</ div >
+										< input  type = " text " th: field = " * {solicitud} " placeholder = " Solicitud "
+											clase = " entrada única "
+											th: errorclass = " 'control de formulario no es válido' " /> < pequeño
+											clase = " comentarios no válidos "
+											th: if = " $ {# fields.hasErrors ('solicitud')} "
+											th: errors = " * {solicitud} " > </ small >
+									</ div >
 									
 					 
 					
 						
-						<div class="input-group-icon mt-10">
-										<div class="icon">
-											<i class="fas fa-info-circle" aria-hidden="true"></i>
-										</div>
-										<input type="number" th:field="*{costefinal}" placeholder="Coste final"
-											class="single-input"
-											th:errorclass="'form-control is-invalid'" /> <small
-											class="invalid-feedback"
-											th:if="${#fields.hasErrors('costefinal')}"
-											th:errors="*{costefinal}"></small>
-									</div>	
+						< div  class = " input-group-icon mt-10 " >
+										< div  class = " icon " >
+											< i  class = " fas fa-info-circle " aria-hidden = " true " > </ i >
+										</ div >
+										< input  type = " number " th: field = " * {costefinal} " placeholder = " Coste final "
+											clase = " entrada única "
+											th: errorclass = " 'control de formulario no es válido' " /> < pequeño
+											clase = " comentarios no válidos "
+											th: if = " $ {# fields.hasErrors ('costefinal')} "
+											th: errors = " * {costefinal} " > </ small >
+									</ div >	
 						
 						
-						<div class="input-group-icon mt-10">
-										<div class="icon">
-											<i class="fas fa-info-circle" aria-hidden="true"></i>
-										</div>
-										<input type="number" th:field="*{estado}" placeholder="Estado"
-											class="single-input"
-											th:errorclass="'form-control is-invalid'" /> <small
-											class="invalid-feedback"
-											th:if="${#fields.hasErrors('estado')}"
-											th:errors="*{estado}"></small>
-									</div>
+						< div  class = " input-group-icon mt-10 " >
+										< div  class = " icon " >
+											< i  class = " fas fa-info-circle " aria-hidden = " true " > </ i >
+										</ div >
+										< input  type = " number " th: field = " * {estado} " placeholder = " Estado "
+											clase = " entrada única "
+											th: errorclass = " 'control de formulario no es válido' " /> < pequeño
+											clase = " comentarios no válidos "
+											th: if = " $ {# fields.hasErrors ('estado')} "
+											th: errors = " * {estado} " > </ small >
+									</ div >
 									
 									
 									
@@ -68,25 +68,25 @@
 					
 					 
 													
-					<hr />
-					<div class="form-group row">
-						<div class="col-sm-4">
-							<a class="btn btn-danger" 
-								th:href="@{/pedido/list}">
-							<i class="fas fa-minus-circle"></i>&nbsp;Cancelar</a>
-							<button class="btn btn-success" type="submit">
-								<i class="fas fa-plus-circle"></i>&nbsp;Guardar
-							</button>
-						</div>
-					</div>
-					<input type="hidden" th:field="*{idpedido}" />
-				</form>
-			</div>
-		</div>
-			</div>
-			<footer th:replace="layout :: frgFooter"></footer>
-		</div>
-	</div>
-</div>
-</body>
-</html>
+					< hr />
+					< div  class = " form-group row " >
+						< div  class = " col-sm-4 " >
+							< a  class = " btn btn-danger "
+								th: href = " @ {/ pedido / list} " >
+							< i  class = " fas fa-minus-circle " > </ i > & nbsp; Cancelar </ a >
+							< button  class = " btn btn-success " type = " submit " >
+								< i  class = " fas fa-plus-circle " > </ i > & nbsp; Guardar
+							</ button >
+						</ div >
+					</ div >
+					< input  type = " hidden " th: field = " * {idpedido} " />
+				</ form >
+			</ div >
+		</ div >
+			</ div >
+			< pie de página  th: replace = " layout :: frgFooter " > </ footer >
+		</ div >
+	</ div >
+</ div >
+</ cuerpo >
+</ html >

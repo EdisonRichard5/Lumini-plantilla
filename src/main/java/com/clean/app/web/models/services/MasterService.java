@@ -14,38 +14,35 @@ import com.clean.app.web.models.entities.Master;
 public class MasterService implements IMasterService {
 	@Autowired //Inyeccion de dependencia
 	private IMaster dao;
+	
 	@Override
-	@Transactional
 	public void save(Master master) {
-		// TODO Auto-generated method stub
-		dao.save(master);
+		try{
+			dao.save(master);
+		}catch(Exception ex){
+			throw ex;
+		}
 	}
 
 	@Override
-	@Transactional(readOnly=true)
 	public Master findById(Integer id) {
-		// TODO Auto-generated method stub
 		return dao.findById(id).get();
 	}
 
 	@Override
-	@Transactional
 	public void delete(Integer id) {
-		// TODO Auto-generated method stub
+	
 		dao.deleteById(id);
 	}
 
 	@Override
-	@Transactional(readOnly=true)
 	public List<Master> findAll() {
-		// TODO Auto-generated method stub
 		return (List<Master>) dao.findAll();
 	}
 
 
 	@Override
 	public List<Master> findByCliente(Integer id) {
-		// TODO Auto-generated method stub
 		return dao.findByCliente(id);
 	}
 }

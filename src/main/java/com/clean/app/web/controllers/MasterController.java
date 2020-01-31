@@ -36,12 +36,13 @@ import com.clean.app.web.models.services.UsuarioService;
 
 @SessionAttributes({"detalles"})
 public class MasterController {
+	
 	@Autowired
 	private IMasterService service;
 	@Autowired
-	private ClienteService srvSocio;
+	private ClienteService srvCliente;
 	@Autowired
-	private ServicioService srvMetodoPago;
+	private ServicioService srvServicio;
 	@Autowired
 	private UsuarioService srvUsuario;
 	
@@ -49,13 +50,14 @@ public class MasterController {
 	
 	@GetMapping(value="/create/{id}")
 	public String create(Model model, @PathVariable(value="id") Integer id) {
-		Master master = new Master();
-		master.setPersonaid(id);	
-		Cliente cliente = srvSocio.findById(id);
+		
+			Master master = new Master();
+		master.setClienteid(id);	
+		Cliente cliente = srvCliente.findById(id);
 		List<Usuario> usuarios = srvUsuario.findAll();
-		List<Servicio> tipos = srvMetodoPago.findAll();
-		model.addAttribute("title", "Nuevo registro para " + cliente);
-		model.addAttribute("cliente", cliente);
+		List<Servicio> tipos = srvServicio.findAll();
+		model.addAttribute("title", "Nuevo registro " );
+		model.addAttribute("master", master);
 		model.addAttribute("detalles", new ArrayList<Pedido>());
 		model.addAttribute("usuarios", usuarios);
 		model.addAttribute("tipos", tipos);		
@@ -64,35 +66,7 @@ public class MasterController {
 	
 	
 	
-	
-	@GetMapping(value="/retrieve/{id}")
-	public String retrieve(@PathVariable(value="id") Integer id, Model model) {
-		Master master = service.findById(id);
-		model.addAttribute("master", master);
-		return "master/card";		
-	} 
-	
-	@GetMapping(value="/update/{id}")
-	public String update(@PathVariable(value="id") Integer id, Model model) {
-		Master master = service.findById(id);
-		model.addAttribute("title", "Actualizando el registro de " 
-		+ master.getObservacion());
-		model.addAttribute("master", master);
-		return "master/form";		
-	} 
-	
-	@GetMapping(value="/delete/{id}")
-	public String delete(@PathVariable(value="id") Integer id, Model model, 
-			RedirectAttributes flash) {
-		try {
-			service.delete(id);
-			flash.addFlashAttribute("success", "El registro fue eliminado con éxito.");
-		}	
-		catch(Exception ex) {
-			flash.addFlashAttribute("error", "El registro no pudo ser eliminado.");
-		}
-		return "redirect:/master/list";		
-	} 
+
 	
 	@PostMapping(value="/save")
 	public String save(@Valid Master master, 
@@ -102,10 +76,11 @@ public class MasterController {
 			, SessionStatus session){
 		
 		if(result.hasErrors()) {
+			
 			return "master/form";
 		}
 		
-		Cliente cliente = srvSocio.findById(master.getPersonaid());
+		Cliente cliente = srvCliente.findById(master.getClienteid());
 		master.setCliente(cliente);
 		master.setDetalles(detalles);
 		service.save(master);
@@ -117,18 +92,12 @@ public class MasterController {
 	@PostMapping(value="/addDetail", produces="application/json")
 	public @ResponseBody List<Pedido> addDetail(@RequestBody Pedido detail, 
 			@SessionAttribute(value="detalles") List<Pedido> detalles) {		
-		Servicio servicio = srvMetodoPago.findById(detail.getIdpedido());
-		detail.setServicio(servicio);		
+		Servicio servicio = srvServicio.findById(detail.getTipoexamenid());
+		detail.setTipoServicio(servicio);	
 		detalles.add(detail);		
 		return detalles;		
 	}
 	
 	
-	@GetMapping(value="/list")
-	public String list(Model model) {
-		List<Master> lista = service.findAll();
-		model.addAttribute("title", "Listado Master");
-		model.addAttribute("master", lista);
-		return "master/list";		
-	} 
+	
 }

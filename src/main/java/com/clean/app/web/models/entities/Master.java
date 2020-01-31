@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,6 +24,10 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
  
 @Entity()
 @Table(name = "MASTER")
@@ -50,20 +55,20 @@ public class Master implements Serializable {
 	@ManyToOne
 	private Cliente cliente;
 	
+
+	
 	@Transient
-	private int personaid;
+	private int clienteid;
 		
-	public int getPersonaid() {
-		return personaid;
+
+	public int getClienteid() {
+		return clienteid;
 	}
 
-	public void setPersonaid(int personaid) {
-		this.personaid = personaid;
+	public void setClienteid(int clienteid) {
+		this.clienteid = clienteid;
 	}
 	
- 
-		
-
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name= "IDMASTER")
 	private List<Pedido> detalles;
@@ -77,6 +82,35 @@ public class Master implements Serializable {
 		this.idmaster=id;
 	}
  
+	//Bitácora
+	@Column(name="CREADOPOR")
+	@Size(max=35)
+	private String creadoPor;
+	
+	@Column(name="CREADOEN")
+	private Calendar creadoEn;
+	@PrePersist
+    public void prePersist() {
+        creadoEn = Calendar.getInstance();
+        SecurityContext context = SecurityContextHolder.getContext();
+        creadoPor = context.getAuthentication().getName();
+    }
+    
+	public String getCreadoPor() {
+		return creadoPor;
+	}
+
+	public void setCreadoPor(String creadoPor) {
+		this.creadoPor = creadoPor;
+	}
+
+	public Calendar getCreadoEn() {
+		return creadoEn;
+	}
+
+	public void setCreadoEn(Calendar creadoEn) {
+		this.creadoEn = creadoEn;
+	}
 
 	public List<Pedido> getDetalles() {
 		return detalles;

@@ -16,6 +16,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity()
 @Table(name = "CLIENTE")
 public class Cliente implements Serializable{
@@ -42,6 +44,7 @@ public class Cliente implements Serializable{
 	@Size(max=50)
 	private String observacion;
 		
+	@JsonIgnore
 	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY)
 	private List<Master> master;
 	
@@ -101,4 +104,10 @@ public class Cliente implements Serializable{
 	public void setMaster(List<Master> master) {
 		this.master = master;
 	}
+	
+	@Override
+	public String toString() {
+		return nombre;
+	}
+	
 }

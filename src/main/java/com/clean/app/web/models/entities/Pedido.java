@@ -13,6 +13,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.springframework.data.annotation.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+import org.springframework.data.annotation.Transient;
 
 @Entity()
 @Table(name = "PEDIDO")
@@ -31,29 +37,39 @@ public class Pedido implements Serializable {
 	private float costefinal;
 	 
 	
-	
+	@JsonIgnore
 	@JoinColumn(name="IDPRODUCTO",referencedColumnName="IDPRODUCTO")
 	@ManyToOne
 	private Producto producto;
 	
-	 
+	
 	@JoinColumn(name="IDSERVICIO",referencedColumnName="IDSERVICIO")
 	@ManyToOne
-	private Servicio servicio;
+	private Servicio tipoServicio;
+	
+	
 	
 	@JoinColumn(name="IDEMPLEADO",referencedColumnName="IDEMPLEADO")
 	@ManyToOne
 	private Empleado empleado;
 	
-	
-	
-	@JoinColumn(name="IDMASTER",referencedColumnName="IDMASTER")
+	/*@JoinColumn(name="IDMASTER",referencedColumnName="IDMASTER")
 	@ManyToOne
 	private Master master;
 	
-
+	*/
+	@Transient
+	private Integer tipoexamenid;
 
 	
+	public Integer getTipoexamenid() {
+		return tipoexamenid;
+	}
+
+	public void setTipoexamenid(Integer tipoexamenid) {
+		this.tipoexamenid = tipoexamenid;
+	}
+
 	public Pedido() {
 		super();
 	}
@@ -82,13 +98,16 @@ public class Pedido implements Serializable {
 	}
 
 	 
-
-	public Servicio getServicio() {
-		return servicio;
+	public Servicio getTipoServicio() {
+		return tipoServicio;
 	}
 
-	public void setServicio(Servicio servicio) {
-		this.servicio = servicio;
+	public void setTipoServicio(Servicio tipoServicio) {
+		this.tipoServicio = tipoServicio;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public Empleado getEmpleado() {
@@ -109,5 +128,7 @@ public class Pedido implements Serializable {
 	public void setCostefinal(float costefinal) {
 		this.costefinal = costefinal;
 	}
+	
+	
 	
 }

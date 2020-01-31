@@ -17,6 +17,7 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
 @Entity()
 @Table(name = "SERVICIO")
 public class Servicio implements Serializable{
@@ -35,9 +36,14 @@ public class Servicio implements Serializable{
 	private float precio ;
 	
 	@JsonIgnore
+	@OneToMany(mappedBy = "tipoServicio", fetch =FetchType.LAZY)
+	private List<Pedido>pedido;
+	
+	
+/*	@JsonIgnore
 	@OneToMany(mappedBy="master", fetch=FetchType.LAZY)
 	private List<Pedido> pedido;
-
+*/
 	public Servicio() {
 		super();
 	}
@@ -71,12 +77,5 @@ public class Servicio implements Serializable{
 		this.precio = precio;
 	}
 
-	public List<Pedido> getPedido() {
-		return pedido;
-	}
 
-	public void setPedido(List<Pedido> pedido) {
-		this.pedido = pedido;
-	}
-	
 }

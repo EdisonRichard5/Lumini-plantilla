@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: frgHead"></head>
+<body>
+	<header th:replace="layout :: frgHeader"></header>
+
+<div class="whole-wrap">
+		<div class="container box_1170">
+			<div class="section-top-border">
+				<div class="welcome_docmed_area">
+					<div class="row">
+						<div class="col-xl-5 col-lg-5">
+							<div class="welcome_thumb">
+								<div class="thumb_1">
+									
+								</div>
+								<div class="thumb_2">
+						
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-7 col-lg-7">
+							<div class="welcome_docmed_info">
+								<h2 th:text="${title}"></h2>
+								<h3>Pedidos</h3>
+								
+								<form th:action="@{/master/save}" th:object="${master}"
+									method="post">
+									
+			
+								
+				
+					
+					
+				<input type="hidden" th:field="*{clienteid}" />
+				
+					<div class="input-group-icon mt-10">
+										<div class="icon">
+											<i class="fas fa-info-circle" aria-hidden="true"></i>
+										</div>
+										<input th:field="*{fecha}" placeholder="Fecha" 
+											class="single-input" type="date"											
+											th:errorclass="'form-control is-invalid'">
+										 <small
+											class="invalid-feedback"
+											th:if="${#fields.hasErrors('fecha')}"
+											th:errors="*{fecha}"></small>
+									</div>
+									
+								<br>
+							<br>
+								<table id="tblAgregarDetalle">
+									<thead>
+										<tr>
+											<td>Tipo de examen</td>
+											<td>Valor</td>
+											<td></td>
+										</tr>
+									</thead>				
+									<tbody>
+										<tr>
+											<td>
+												<select class="nice-select wide" id="cmbTipo" name="cmbTipo" >
+												<option value="0">-- Seleccione --</option>
+												<option th:each="tipo : ${tipos}" th:value="${tipo.idservicio}"
+													th:text="${tipo.tipo}"></option>
+											</select>										
+											</td>																						
+
+											<td>
+													<input placeholder="Ingrese el valor" name="txtValor" id="txtValor" type="text" class="single-input" />										
+											</td>
+											<td>
+											<button type="button" id="btnAgregar" class="btn btn-sm btn-success"><i class="fas fa-plus"></i></button>
+											</td>
+										</tr>										
+									</tbody>				
+								</table>
+								<br>
+								<table class="table ">			
+									<tbody id="tblDetalle">
+									</tbody>								
+								</table>
+								<br>
+								
+								
+								
+									<div class="input-group-icon mt-10">
+										<a class="genric-btn danger radius" th:href="@{/}">
+											Cancelar </a> <input type="submit"
+											class="genric-btn success radius" value="Guardar" />
+
+									</div>
+
+									
+									
+										<input type="hidden" th:field="*{idmaster}" />
+									
+									
+									
+								</form>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout :: frgFooter"></footer>
+	<script th:src="@{/js/examensanguineo-detail.js}"></script>
+</body>
+</html>

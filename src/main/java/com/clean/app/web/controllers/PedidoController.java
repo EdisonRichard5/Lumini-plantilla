@@ -41,8 +41,8 @@ public class PedidoController {
 	@GetMapping(value="/update/{id}")
 	public String update(@PathVariable(value="id") Integer id, Model model) {
 		Pedido pedido = service.findById(id);
-		model.addAttribute("title", "Actualizando el registro de " 
-		+ pedido.getServicio() +" "+ pedido.getCostefinal());
+	//	model.addAttribute("title", "Actualizando el registro de " 
+		//+ pedido.getServicio() +" "+ pedido.getCostefinal());
 		model.addAttribute("pedido", pedido);
 		return "pedido/form";		
 	} 
@@ -60,7 +60,7 @@ public class PedidoController {
 		return "redirect:/pedido/list";		
 	} 
 	
-	@PostMapping(value="/save")
+/*	@PostMapping(value="/save")
 	public String save(@Valid Pedido pedido, BindingResult result, Model model,
 			RedirectAttributes flash) {
 		try {
@@ -91,5 +91,5 @@ public class PedidoController {
 		model.addAttribute("lista", lista);
 		return "pedido/list";		
 	} 
-
+*/
 }

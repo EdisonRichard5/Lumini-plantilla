@@ -53,7 +53,7 @@ public class ServicioService implements IServicioService{
 	@Override
 	@Transactional(readOnly=true)
 	public List<Servicio> findAll() {
-		// TODO Auto-generated method stub
+		
 		return (List<Servicio>) dao.findAll();
 	}
 
